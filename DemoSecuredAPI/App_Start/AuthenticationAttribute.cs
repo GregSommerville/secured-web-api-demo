@@ -54,10 +54,9 @@ namespace DemoSecuredAPI
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, token)
-                    // Add more claims if needed: Roles, etc...
                 };
 
-                var identity = new ClaimsIdentity(claims);
+                var identity = new ClaimsIdentity(claims, "Bearer");
                 IPrincipal user = new ClaimsPrincipal(identity);
 
                 return Task.FromResult(user);

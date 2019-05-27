@@ -11,9 +11,8 @@ namespace DemoSecuredAPI.Models.DAL
     {
         // Normally this item repository would be a class that communicates with a database.
         // For this simple demo, we simply use an in-memory list of items
-
         private ItemCollection items = new ItemCollection();
-        private const string cacheName = "itemCache";
+        private const string cacheKey = "itemCache";
 
         public ItemRepository()
         {
@@ -41,16 +40,16 @@ namespace DemoSecuredAPI.Models.DAL
         {
             // return false if no cache avail, otherwise load
             var cache = MemoryCache.Default;
-            if (cache.Contains(cacheName) == false) return false;
+            if (cache.Contains(cacheKey) == false) return false;
 
-            items = cache[cacheName] as ItemCollection;
+            items = cache[cacheKey] as ItemCollection;
             return true;
         }
 
         private void SaveToCache()
         {
             var cache = MemoryCache.Default;
-            cache[cacheName] = items;
+            cache[cacheKey] = items;
         }
 
         public IItem Buy(string itemName)
