@@ -1,5 +1,4 @@
 ﻿using DemoSecuredAPI.Models.DAL;
-using System;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -8,7 +7,7 @@ namespace DemoSecuredAPI.Controllers
     [Authorize]
     public class PurchaseController : ApiController
     {
-        // allow dependency injection (via constructor) to pass in data store
+        // dependency injection (via constructor) to pass in data store
         private IItemRepository dataStore = new ItemRepository();
 
         public PurchaseController() {}

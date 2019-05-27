@@ -8,7 +8,7 @@ namespace DemoSecuredAPI.Controllers
     [AllowAnonymous]
     public class ItemsController : ApiController
     {
-        // allow dependency injection (via constructor) to pass in data store
+        // dependency injection (via constructor) to pass in data store
         private IItemRepository dataStore = new ItemRepository();
 
         public ItemsController() {}
