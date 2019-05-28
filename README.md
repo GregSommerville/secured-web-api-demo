@@ -63,10 +63,10 @@ There are several possible approaches to securing a public web API:
 
 Approach | Pros | Cons
 --- | --- | ---
-Token-based | Easy to use from a consumer perspective.  No expiration period means no need to re-authenticate. | If the user accidentally exposed the token, others could use it.  Requires registration and delivery of token to user prior to them using the API.
+Token-based | Easy to use from a consumer perspective.  No expiration period means no need to re-authenticate.  User access and abilities can be controlled in the API based on the token. | If the user accidentally exposes the token, others could use it.  Requires registration and delivery of token to user prior to them using the API.
 Windows authentication | Effortless when in an Intranet environment | Not useful for public APIs.
 OAuth Social login | No preliminary registration needed.  Easy from a user perspective. | Users are essentially anonymous unless permission is granted to obtain their email or other identifying info.  No easy way to restrict certain users.
-OAuth Local login | Allows detailed control of token expiration | Requires users to register and/or login to gain a token.
+OAuth Local login | Allows detailed control of token expiration | Requires users to register and/or login to gain a token.  May require additional login if their token expires.
 
 For this project, a simple token-based authentication is used.  The token is created and provided to the user before they can use the API.  This technique is common and used by companies like Google for Google Maps API access.  In this case, a simple GUID is used as the token.
 
