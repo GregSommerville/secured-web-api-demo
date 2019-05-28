@@ -80,8 +80,23 @@ The included web app can be used to test the web API.  It initially calls the `G
 
 Beyond that, unit tests are provided that test both controllers, and the required mocked data source class.  The controllers use dependency injection to swap out the standard data source class with a mocked version.  
 
-In cases where an actual database is needed for the mocked data, I typically like to use a LocalDB database on my development machine, assuming the actual development database is located elsewhere.  When using Code First Entity Framework, I set up Migrations to track schema changes.  Those migrations can then be used with the LocalDB mock database.
+In cases where an actual database is needed for the mocked data, I typically like to use a LocalDB database on my development machine, assuming the actual development database is located elsewhere.  When using Code First Entity Framework, I set up Migrations to track schema changes.  Those migrations can then be used with the LocalDB mock database to ensure they have the same schema.
 
 ## Technical Notes
 For error trapping, I like to use Elmah.  It provides a simple way to trap errors and either write XML log files (as is done in this project), send error emails, and much more.  It's all controlled by settings in web.config.  One small difference between a regular ASP.NET application and a Web API is that usually 500 errors are sent back to the client from a Web API, rather than being unhandled and therefore caught by Elmah.  Because of this, I've added an UnhandledExceptionFilter class that explicitly passes the error to Elmah.
 
+## Credits
+Copyright 2019 Greg Sommerville
+
+## License
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
