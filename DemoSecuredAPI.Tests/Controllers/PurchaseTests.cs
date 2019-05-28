@@ -26,6 +26,19 @@ namespace DemoSecuredAPI.Tests.Controllers
         }
 
         [TestMethod]
+        public void PostPurchase_DecrementsInventory()
+        {
+            var repo = new MockItemRepository();
+            var startingCount = repo.GetInventory().Count;
+            var controller = new PurchaseController(repo);
+            var itemName = "TunaMelt";
+            var item = controller.Post(itemName) as CreatedAtRouteNegotiatedContentResult<IItem>;
+            var newCount = repo.GetInventory().Count;
+
+            Assert.IsTrue(startingCount == (newCount + 1));
+        }
+
+        [TestMethod]
         public void PostPurchase_InvalidItemNameReturnsError()
         {
             var repo = new MockItemRepository();
