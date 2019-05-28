@@ -6,7 +6,7 @@ namespace DemoSecuredAPI.Tests
     public class MockDataTests
     {
         [TestMethod]
-        public void DataWasInitialized()
+        public void MockDataWasInitialized()
         {
             var repo = new MockItemRepository();
             var data = repo.GetInventory();

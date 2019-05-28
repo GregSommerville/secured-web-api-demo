@@ -1,7 +1,7 @@
 ﻿To Do
 ----------------
 - async?
-- unit tests
+- use DTOs?
 - OpenAPI documentation
 - readme.md, be sure to include comments about:
 	calling the API, and what the results look like

@@ -10,7 +10,7 @@ namespace DemoSecuredAPI.Tests.Controllers
     public class ItemsTests  
     {
         [TestMethod]
-        public void GetReturnsCorrectly()
+        public void GetItems_ReturnsCorrectNumber()
         {
             var repo = new MockItemRepository();
             var controller = new ItemsController(repo);
