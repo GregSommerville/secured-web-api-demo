@@ -24,5 +24,15 @@ namespace DemoSecuredAPI.Tests.Controllers
             Assert.AreEqual(item.RouteValues["itemName"], item.Content.Name);
             Assert.AreEqual(item.Content.Name, itemName);
         }
+
+        [TestMethod]
+        public void PostPurchase_InvalidItemNameReturnsError()
+        {
+            var repo = new MockItemRepository();
+            var controller = new PurchaseController(repo);
+            var itemName = "NotAnItem";
+            var result = controller.Post(itemName);
+            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+        }
     }
 }

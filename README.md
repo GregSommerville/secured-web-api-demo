@@ -5,6 +5,8 @@ This project demonstrates a .NET Web API project that uses token-based security.
 
 It simulates a store that has an inventory.  Authorized users with a valid token can purchase an item, which will remove it from the inventory.
 
+![application screenshot](screenshot.png)
+
 ## API Description
 
 This project contains two REST API endpoints - one for getting the current inventory, and one for making a purchase.  
@@ -38,7 +40,7 @@ Example:
     ]
 
 ### POST /api/purchase/{itemName}
-This API endpoint is available only to authenticated users (i.e., those with a valid token ID).
+This API endpoint is available only to authenticated users (i.e., those with a valid token ID in the request header).  The token must be included in the Authorization header, with a value of 'Bearer {tokenID}'.
 
 If the {itemName} isn't currently found in the inventory, a BadRequest error will be returned.
 
