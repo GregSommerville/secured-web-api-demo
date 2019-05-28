@@ -1,9 +1,6 @@
 ﻿using DemoSecuredAPI.Models.DAL;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DemoSecuredAPI.Tests
 {
@@ -26,7 +23,14 @@ namespace DemoSecuredAPI.Tests
 
         public IItem Buy(string itemName)
         {
-            throw new NotImplementedException();
+            // try to find it
+            var item = items.FirstOrDefault(i => i.Name == itemName);
+
+            // if found, remove from inventory
+            if (item != null)
+                items.Remove(item);
+
+            return item;
         }
 
         public void Dispose()
@@ -36,7 +40,7 @@ namespace DemoSecuredAPI.Tests
 
         public List<IItem> GetInventory()
         {
-            throw new NotImplementedException();
+            return items;
         }
     }
 }

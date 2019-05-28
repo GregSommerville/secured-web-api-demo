@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DemoSecuredAPI.Tests
 {
@@ -7,8 +6,13 @@ namespace DemoSecuredAPI.Tests
     public class MockDataTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void DataWasInitialized()
         {
+            var repo = new MockItemRepository();
+            var data = repo.GetInventory();
+
+            Assert.IsNotNull(data);
+            Assert.IsTrue(data.Count == 4);
         }
     }
 }

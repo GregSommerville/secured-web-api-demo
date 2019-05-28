@@ -1,6 +1,5 @@
 ﻿using DemoSecuredAPI.Models.DAL;
 using System.Web.Http;
-using System.Web.Http.Description;
 
 namespace DemoSecuredAPI.Controllers
 {
@@ -16,13 +15,12 @@ namespace DemoSecuredAPI.Controllers
         }
 
         // POST api/purchase/itemName
-        //[ResponseType(typeof(IItem))]
         [Authorize]
         [HttpPost]
         [Route("api/purchase/{itemName}", Name="GetItemByName")]
         public IHttpActionResult Post(string itemName)
         {
-            // in case we need the request API key, we get it this way:
+            // In case we need the request API key, we get it this way:
             // string apiKey = RequestContext.Principal.Identity.Name;
 
             var item = dataStore.Buy(itemName);

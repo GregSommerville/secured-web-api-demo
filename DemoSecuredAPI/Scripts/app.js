@@ -1,10 +1,9 @@
 ﻿"use strict";
 
-var apiurl = "/api/";
+const apiurl = "/api/";
 
 $(document).ready(function () {
     getItems();
-
     $("#btnBuy").click(onBuyClick);
 });
 
@@ -13,7 +12,7 @@ function getItems() {
 }
 
 function onSuccessGetItems(data) {
-    if (data) {
+    if (data && data.length > 0) {
         const itemsAsHtml = data.map(x => 
             `<tr>
             <td>${x.Name}</td>
@@ -40,10 +39,11 @@ function onBuyClick() {
     const itemName = $("#txtProductName").val();
     const apiKey = $("#txtAPIkey").val();
     if (itemName.length === 0) {
-        showStatus("Please select an item to buy");
+        showFailure("Please select an item to buy");
     } else {
         ajax("Purchase/" + itemName, onBuySuccess, "POST", {}, apiKey);
     }
+    return false;
 }
 
 function onBuySuccess(data) {
@@ -51,12 +51,24 @@ function onBuySuccess(data) {
     getItems();
 
     // and show the purchase result
-    showStatus("Successful purchase of " + data.Name);
+    showSuccess("Successful purchase of " + data.Name);
     $("#txtProductName").val('');
 }
 
-function showStatus(msg) {
-    $("#result").html(msg);
+function showSuccess(msg) {
+    $("#result")
+        .html(msg)
+        .removeClass("failureMessage")
+        .addClass("successMessage")
+        .css('visibility', 'visible');
+}
+
+function showFailure(msg) {
+    $("#result")
+        .html(msg)
+        .addClass("failureMessage")
+        .removeClass("successMessage")
+        .css('visibility', 'visible');
 }
 
 //---------------------------------------------------
@@ -73,11 +85,11 @@ function ajax(servicename, success, method, data, apiKey) {
     }
 
     // get our token.  If not available, then return
-    var extraheader = {};
+    let extraheader = {};
     if (apiKey) {
         extraheader = { 'Authorization': 'Bearer ' + apiKey };
     }
-    var returnDataFormat = 'json';
+    const returnDataFormat = 'json';
 
     $.ajax(
         {
@@ -91,7 +103,7 @@ function ajax(servicename, success, method, data, apiKey) {
             success: success,
             error: function (xhr, err) {
                 const errInfo = JSON.parse(xhr.responseText);
-                showStatus("Error: " + errInfo.Message);
+                showFailure("Error: " + errInfo.Message);
             }
         }
     );

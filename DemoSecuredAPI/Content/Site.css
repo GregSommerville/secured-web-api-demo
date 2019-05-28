@@ -12,3 +12,19 @@
 #txtAPIkey {
     width: 350px;
 }
+
+.successMessage {
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+}
+
+.failureMessage {
+    background: #dc3545;
+    color: white;
+    font-weight: bold;
+}
+
+#result {
+    visibility: hidden;
+}
