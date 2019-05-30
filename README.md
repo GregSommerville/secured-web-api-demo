@@ -85,6 +85,10 @@ In cases where an actual database is needed for the mocked data, I typically lik
 ## Technical Notes
 For error trapping, I like to use Elmah.  It provides a simple way to trap errors and either write XML log files (as is done in this project), send error emails, and much more.  It's all controlled by settings in web.config.  One small difference between a regular ASP.NET application and a Web API is that usually 500 errors are sent back to the client from a Web API, rather than being unhandled and therefore caught by Elmah.  Because of this, I've added an UnhandledExceptionFilter class that explicitly passes the error to Elmah.
 
+Typically I create Data Transfer Objects (DTOs) when creating a Web API.  These are simple POCO classes that represent just the data that is sent between the client and the API.  These classes are often very similar to the underlying data objects, but restricted to just include the information needed.  When using DTOs, I usually use AutoMapper to map from internal data objects (like from Entity Framework) to the DTOs.  For this project, the underlying data objects are the same as what's sent to the client, so there is no need for DTOs.
+
+Finally, I often create API controllers as `async`.  This is especially helpful when a controller may require a long-running operation (like a complex database request), since it tells IIS to efficiently use the thread to handle another request during any wait.  In this project there are no long-running requests, so the controllers are synchronous.
+
 ## Credits
 Copyright 2019 Greg Sommerville
 
