@@ -1,4 +1,5 @@
 ﻿using DemoSecuredAPI.Models.DAL;
+using DemoSecuredAPI.Models.RequestHandlers;
 using System.Web.Http;
 
 namespace DemoSecuredAPI.Controllers
@@ -23,7 +24,7 @@ namespace DemoSecuredAPI.Controllers
             // In case we need the request API key, we get it this way:
             // string apiKey = RequestContext.Principal.Identity.Name;
 
-            var item = dataStore.Buy(itemName);
+            var item = new PurchaseRequests(dataStore).PostHandler(itemName);
             if (item == null)
                 return BadRequest("Invalid item name");
             else

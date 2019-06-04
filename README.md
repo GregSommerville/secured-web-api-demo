@@ -87,6 +87,8 @@ For error trapping, I like to use Elmah.  It provides a simple way to trap error
 
 Typically I create Data Transfer Objects (DTOs) when creating a Web API.  These are simple POCO classes that represent just the data that is sent between the client and the API.  These classes are often very similar to the underlying data objects, but restricted to just include the information needed.  When using DTOs, I usually use AutoMapper to map from internal data objects (like from Entity Framework) to the DTOs.  For this project, the underlying data objects are the same as what's sent to the client, so there is no need for DTOs.
 
+Code in each controller should be as minimal as possible, so this code was refactored to use classes that handle each controller's requests.  The `ItemRequests` class handles all requests that come in through the Items controller - in this case, just a simple GET.  The `PurchaseRequests` class handles all requests that come in through the Purchase controller - in this case, just a POST.
+
 Finally, I often create API controllers as `async`.  This is especially helpful when a controller may require a long-running operation (like a complex database request), since it tells IIS to efficiently use the thread to handle another request during any wait.  In this project there are no long-running requests, so the controllers are synchronous.
 
 ## Credits

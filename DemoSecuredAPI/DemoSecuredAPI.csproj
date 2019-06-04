@@ -150,6 +150,8 @@
     <Compile Include="Models\DAL\IItemRepository.cs" />
     <Compile Include="Models\DAL\Item.cs" />
     <Compile Include="Models\DAL\ItemRepository.cs" />
+    <Compile Include="Models\RequestHandlers\ItemRequests.cs" />
+    <Compile Include="Models\RequestHandlers\PurchaseRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

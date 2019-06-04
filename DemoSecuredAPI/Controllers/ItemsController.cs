@@ -1,7 +1,9 @@
 ﻿using DemoSecuredAPI.Models.DAL;
+using DemoSecuredAPI.Models.RequestHandlers;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
+
 
 namespace DemoSecuredAPI.Controllers
 {
@@ -22,7 +24,7 @@ namespace DemoSecuredAPI.Controllers
         public IHttpActionResult Get()
         {
             // returns a list of all of the unsold items 
-            var results = dataStore.GetInventory();
+            var results = new ItemRequests(dataStore).GetHandler();
             return Ok(results);
         }
     }
