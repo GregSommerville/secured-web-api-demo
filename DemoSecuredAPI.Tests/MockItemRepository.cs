@@ -33,6 +33,11 @@ namespace DemoSecuredAPI.Tests
             return item;
         }
 
+        public void Clear()
+        {
+            items.Clear();
+        }
+
         public void Dispose()
         {
             items.Clear();

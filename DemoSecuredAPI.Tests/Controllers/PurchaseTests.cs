@@ -26,6 +26,21 @@ namespace DemoSecuredAPI.Tests.Controllers
         }
 
         [TestMethod]
+        public void PostPurchase_ReturnsPopulatedItem()
+        {
+            var repo = new MockItemRepository();
+            var controller = new PurchaseController(repo);
+            var itemName = "TunaMelt";
+            var response = controller.Post(itemName) as CreatedAtRouteNegotiatedContentResult<IItem>;
+            Assert.IsNotNull(response);
+
+            var newItem = response.Content;
+            Assert.AreEqual(newItem.Name, itemName);
+            Assert.AreEqual(newItem.Description, "Tuna melt on rye");
+            Assert.AreEqual(newItem.Price, 5);
+        }
+
+        [TestMethod]
         public void PostPurchase_DecrementsInventory()
         {
             var repo = new MockItemRepository();
